@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col-sm-2 p-2" *ngFor="let photo of photos">
+    <img
+      src="{{ imageUrl + photo.url }}"
+      class="img-thumbnail p-1"
+      alt=""
+      style="width: 120px; height: 80px; margin-bottom: 5px"
+      [ngClass]="{ photoMainStyle: photo.isMain === true }"
+    />
+    <div class="text-center">
+      <button
+        type="button"
+        class="btn mr-1 btn-sm"
+        (click)="setMain(photo)"
+        [ngClass]="photo.isMain ? 'btn-success actice' : 'btn-secondary'"
+        [disabled]="photo.isMain"
+      >
+        Main
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger btn-sm"
+        (click)="deleteImage(photo.id)"
+        [disabled]="photo.isMain"
+      >
+        <i class="fa fa-trash-o"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-sm-12 p-2">
+    <label class="control-label">Upload Image(s)</label><br />
+    <div
+      class="col-md-12"
+      style="
+        margin-bottom: 40px;
+        border: 1px solid rgb(225, 220, 220);
+        padding: 8px;
+      "
+    >
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="50%">Name</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <td>
+              <strong>{{ item?.file?.name }}</strong>
+            </td>
+            <td *ngIf="uploader.options.isHTML5" nowrap>
+              {{ item?.file?.size / 1024 / 1024 | number : ".2" }} MB
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <div>
+          Progress:
+          <div class="progress mb-4">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{ width: uploader.progress + '%' }"
+            ></div>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="uploader.uploadAll()"
+          [disabled]="!uploader.getNotUploadedItems().length"
+        >
+          <span class="fa fa-upload"></span> Upload</button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="uploader.clearQueue()"
+          [disabled]="!uploader.queue.length"
+        >
+          <span class="fa fa-trash"></span>
+        </button>
+      </div>
+
+      <div style="margin-top: 20px; margin-bottom: 8px">
+        <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========== Modals ============================================================== -->
+<!-- Confirm delete -->
+<ng-template #deleteImageTemplate>
+  <div class="modal-body text-center">
+    <p>Are you sure delete this image?</p>
+    <button type="button" class="btn btn-bgcolor" (click)="deleteImage()">
+      Okay
+      <i
+        class="fa fa-spinner fa-spin"
+        style="font-size: 14px"
+        *ngIf="loadingDelete"
+      ></i>
+    </button>
+    &nbsp;
+    <button
+      type="button"
+      class="btn btn-secondary waves-effect"
+      (click)="close()"
+    >
+      Cancel
+    </button>
+  </div>
+</ng-template>
