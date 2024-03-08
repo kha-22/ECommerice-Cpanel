@@ -11,6 +11,7 @@ import { ProductComponent } from "./components/dashboard/product/product.compone
 import { UserComponent } from "./components/dashboard/user/user.component";
 import { MyprofileComponent } from "./components/dashboard/myprofile/myprofile.component";
 import { ProfileResolverService } from "./resolvers/profile-resolver.service";
+import { ComplaintsComponent } from "./components/dashboard/complaints/complaints.component";
 
 const appRoutes: Routes = [
   { path: "server-error", component: ServerErrorComponent },
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
       { path: "", redirectTo: "categories", pathMatch: "full" },
       { path: "orders", component: OrderComponent },
       { path: "products", component: ProductComponent },
+      { path: "complaints", component: ComplaintsComponent },
       { path: "users", component: UserComponent },
       {
         path: "my-profile",

@@ -75,6 +75,9 @@ import { TextInputComponent } from "./components/dashboard/text-input/text-input
 import { ProfileResolverService } from "./resolvers/profile-resolver.service";
 import { PhotoEditorComponent } from "./components/dashboard/photo-editor/photo-editor.component";
 import { LoadingInterceptor } from "./services/loadingInterceptor";
+import { ComplaintsComponent } from "./components/dashboard/complaints/complaints.component";
+import { AccordionModule } from "ngx-bootstrap/accordion";
+import { ComplaintsService } from "./services/complaints.service";
 
 export function getToken() {
   return localStorage.getItem("token");
@@ -109,6 +112,7 @@ export function getLang() {
     MyprofileComponent,
     TextInputComponent,
     PhotoEditorComponent,
+    ComplaintsComponent,
   ],
   imports: [
     //QrCodeModule,
@@ -124,6 +128,7 @@ export function getLang() {
     FormsModule,
     CommonModule,
     NgSwitcheryModule,
+    AccordionModule.forRoot(),
 
     TreeviewModule.forRoot(),
     OrganizationChartModule,
@@ -196,6 +201,7 @@ export function getLang() {
     UsersService,
     DatePipe,
     ProfileResolverService,
+    ComplaintsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

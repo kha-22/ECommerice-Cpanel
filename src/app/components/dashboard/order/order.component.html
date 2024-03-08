@@ -79,7 +79,7 @@
             <table class="table table-hover" style="width: 100%">
               <thead>
                 <tr style="text-align: center">
-                  <th style="min-width: 80px">Id</th>
+                  <th style="min-width: 80px">Order Id</th>
                   <th style="min-width: 159px">User name</th>
                   <th style="min-width: 100px">Order date</th>
                   <th style="min-width: 100px">Total amount</th>
@@ -216,6 +216,7 @@
               <th style="min-width: 100px">Product name</th>
               <th style="min-width: 60px">Price</th>
               <th style="min-width: 50px">Quantity</th>
+              <th style="min-width: 50px">Discount</th>
               <th style="min-width: 70px">Total</th>
             </tr>
           </thead>
@@ -234,6 +235,7 @@
               <td>{{ orderItem?.productName }}</td>
               <td>{{ orderItem?.price }}</td>
               <td>{{ orderItem?.quantity }}</td>
+              <td>{{ orderItem?.discount | currency }}</td>
               <td>{{ orderItem?.total | currency }}</td>
             </tr>
           </tbody>

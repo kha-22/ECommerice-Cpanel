@@ -1,0 +1,72 @@
+<div class="row" style="margin-bottom: 7px; margin-top: -8px">
+  <div class="col-sm-12 m-t-10">
+    <h4 class="page-title" style="font-size: 18px; padding-right: 5px">
+      Manage complaints
+    </h4>
+  </div>
+</div>
+
+<div class="row" *ngFor="let question of questionList">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-body">
+        <div>
+          <div class="float-left">
+            <label style="font-weight: bold">Subject: </label>
+            {{ question?.subject }}
+          </div>
+          <div class="float-right">
+            <label style="font-weight: bold">Sending Date:</label>
+            {{ question?.sendDate | date : "medium" }} &nbsp;&nbsp;
+            <span class="badge badge-success" *ngIf="question?.replay != null"
+              >Answered</span
+            >
+          </div>
+        </div>
+        <div style="margin-top: 50px">
+          <div>
+            <label style="font-weight: bold">Question:</label>
+          </div>
+          <div>
+            {{ question?.message }}
+          </div>
+        </div>
+
+        <div style="margin-top: 50px" *ngIf="question?.replay != null">
+          <div>
+            <label style="font-weight: bold">Replay:</label>
+          </div>
+          <div>
+            <div class="alert alert-info" role="alert" style="width: 100%">
+              {{ question?.replay }}
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== Send replay=============== -->
+        <div style="margin-top: 20px" *ngIf="question?.replay == null">
+          <div>
+            <label style="font-weight: bold">Replay</label>
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="Write you replay here"
+              [(ngModel)]="message"
+            ></textarea>
+          </div>
+
+          <div style="margin-top: 12px">
+            <button
+              type="button"
+              class="btn btn-bgcolor"
+              (click)="sendAnswer(question.id)"
+            >
+              Send replay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
