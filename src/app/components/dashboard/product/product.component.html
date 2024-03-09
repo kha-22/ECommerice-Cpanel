@@ -89,6 +89,7 @@
                   *ngFor="let product of products | paginate : config"
                 >
                   <td>
+                    <!-- {{ product.url }} -->
                     <img
                       src="{{ imageUrl + product.url }}"
                       style="width: 70px; height: 50px; border: 1px solid"
@@ -263,6 +264,20 @@
     <div class="row">
       <div class="col-12" style="margin-bottom: 10px; text-align: left">
         <label>Description : &nbsp;</label> {{ orderDetails?.description }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12" style="margin-bottom: 10px; text-align: left">
+        <label>Images : &nbsp;</label>
+      </div>
+
+      <div class="col-12" style="margin-bottom: 10px; text-align: left">
+        <app-photo-editor
+          [photos]="orderDetails?.productImages"
+          (getPhotos)="setPhotos($event)"
+          [showUpload]="false"
+        ></app-photo-editor>
       </div>
     </div>
   </div>

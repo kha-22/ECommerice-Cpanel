@@ -250,6 +250,7 @@ export class ProductComponent implements OnInit {
 
     this.productService.getProductsPaging(this.commonSearchModel).subscribe(
       (response: any) => {
+        debugger;
         setTimeout(() => {
           this.products = response.data;
           this.config = {
@@ -258,6 +259,7 @@ export class ProductComponent implements OnInit {
             totalItems: response.count,
           };
           this.loadingProducts = false;
+          console.log(this.products);
         }, 50);
       },
       (err: any) => {
@@ -301,10 +303,12 @@ export class ProductComponent implements OnInit {
   }
 
   getProductSearch() {
+    debugger;
     this.commonSearchModel.pageNo = 1;
 
     this.productService.getProductsPaging(this.commonSearchModel).subscribe(
       (response: any) => {
+        debugger;
         this.products = response.data;
         this.config = {
           itemsPerPage: 5,
@@ -398,6 +402,8 @@ export class ProductComponent implements OnInit {
   getProductDetails(id, template: TemplateRef<any>) {
     this.orderDetails = this.products.find((p) => p.id == id);
     this.modalService.showModalLG(template);
+    console.log("=====> this.orderDetails");
+    console.log(this.orderDetails);
   }
 
   showModal(template: TemplateRef<any>) {

@@ -30,6 +30,7 @@ export class PhotoEditorComponent implements OnInit {
   imageUrl = environment.imageUrl + "Images/Products/";
   currentMain: Photo;
   imgId: number;
+  @Input() showUpload: boolean = true;
 
   constructor(
     private authService: AuthService,
