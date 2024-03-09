@@ -6,6 +6,19 @@
   </div>
 </div>
 
+<div class="row" *ngIf="questionList.length == 0">
+  <div class="col-xl-12">
+    <div class="card">
+      <div
+        class="card-body text-center"
+        style="color: darkgrey; font-size: 12px"
+      >
+        No complaints found
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row" *ngFor="let question of questionList">
   <div class="col-xl-12">
     <div class="card">

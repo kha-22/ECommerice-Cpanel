@@ -123,7 +123,7 @@ export class ProductComponent implements OnInit {
       price: [, [Validators.required]],
       quantity: [, [Validators.required]],
       discount: [, [Validators.required]],
-      description: [],
+      description: [, Validators.maxLength(1000)],
     });
   }
 

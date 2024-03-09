@@ -507,7 +507,26 @@
                 class="form-control"
                 formControlName="description"
                 placeholder="Description"
+                maxlength="500"
               ></textarea>
+
+              <div
+                style="
+                  margin-top: 6px;
+                  margin-bottom: -15px;
+                  color: red;
+                  font-weight: bold;
+                "
+                class="alert"
+                *ngIf="
+                  !productForm.get('description').valid &&
+                  productForm.get('description').touched
+                "
+              >
+                <div *ngIf="productForm.get('description')?.maxLength">
+                  Description max length is 1000 char
+                </div>
+              </div>
             </div>
           </div>
 
